@@ -1,39 +1,41 @@
 const pieces = [
-  { name: "rook", symbol: "♖", color: "white" },
-  { name: "knight", symbol: "♘", color: "white" },
-  { name: "bishop", symbol: "♗", color: "white" },
-  { name: "queen", symbol: "♕", color: "white" },
-  { name: "king", symbol: "♔", color: "white" },
-  { name: "bishop", symbol: "♗", color: "white" },
-  { name: "knight", symbol: "♘", color: "white" },
-  { name: "rook", symbol: "♖", color: "white" },
-  { name: "pawn", symbol: "♙", color: "white" },
-  { name: "pawn", symbol: "♙", color: "white" },
-  { name: "pawn", symbol: "♙", color: "white" },
-  { name: "pawn", symbol: "♙", color: "white" },
-  { name: "pawn", symbol: "♙", color: "white" },
-  { name: "pawn", symbol: "♙", color: "white" },
-  { name: "pawn", symbol: "♙", color: "white" },
-  { name: "pawn", symbol: "♙", color: "white" },
-  { name: "rook", symbol: "♜", color: "black" },
-  { name: "knight", symbol: "♞", color: "black" },
-  { name: "bishop", symbol: "♝", color: "black" },
-  { name: "queen", symbol: "♛", color: "black" },
-  { name: "king", symbol: "♚", color: "black" },
-  { name: "bishop", symbol: "♝", color: "black" },
-  { name: "knight", symbol: "♞", color: "black" },
-  { name: "rook", symbol: "♜", color: "black" },
-  { name: "pawn", symbol: "♟", color: "black" },
-  { name: "pawn", symbol: "♟", color: "black" },
-  { name: "pawn", symbol: "♟", color: "black" },
-  { name: "pawn", symbol: "♟", color: "black" },
-  { name: "pawn", symbol: "♟", color: "black" },
-  { name: "pawn", symbol: "♟", color: "black" },
-  { name: "pawn", symbol: "♟", color: "black" },
-  { name: "pawn", symbol: "♟", color: "black" },
+  { name: "rook", color: "white", symbol: "&#9814;" },
+  { name: "knight", color: "white", symbol: "&#9816;" },
+  { name: "bishop", color: "white", symbol: "&#9815;" },
+  { name: "queen", color: "white", symbol: "&#9813;" },
+  { name: "king", color: "white", symbol: "&#9812;" },
+  { name: "bishop", color: "white", symbol: "&#9815;" },
+  { name: "knight", color: "white", symbol: "&#9816;" },
+  { name: "rook", color: "white", symbol: "&#9814;" },
+  { name: "pawn", color: "white", symbol: "&#9817;" },
+  { name: "pawn", color: "white", symbol: "&#9817;" },
+  { name: "pawn", color: "white", symbol: "&#9817;" },
+  { name: "pawn", color: "white", symbol: "&#9817;" },
+  { name: "pawn", color: "white", symbol: "&#9817;" },
+  { name: "pawn", color: "white", symbol: "&#9817;" },
+  { name: "pawn", color: "white", symbol: "&#9817;" },
+  { name: "pawn", color: "white", symbol: "&#9817;" },
+  { name: "rook", color: "black", symbol: "&#9820;" },
+  { name: "knight", color: "black", symbol: "&#9822;" },
+  { name: "bishop", color: "black", symbol: "&#9821;" },
+  { name: "queen", color: "black", symbol: "&#9819;" },
+  { name: "king", color: "black", symbol: "&#9818;" },
+  { name: "bishop", color: "black", symbol: "&#9821;" },
+  { name: "knight", color: "black", symbol: "&#9822;" },
+  { name: "rook", color: "black", symbol: "&#9820;" },
+  { name: "pawn", color: "black", symbol: "&#9823;" },
+  { name: "pawn", color: "black", symbol: "&#9823;" },
+  { name: "pawn", color: "black", symbol: "&#9823;" },
+  { name: "pawn", color: "black", symbol: "&#9823;" },
+  { name: "pawn", color: "black", symbol: "&#9823;" },
+  { name: "pawn", color: "black", symbol: "&#9823;" },
+  { name: "pawn", color: "black", symbol: "&#9823;" },
+  { name: "pawn", color: "black", symbol: "&#9823;" },
 ];
+// Define the chess board
 const board = document.getElementById("board");
 
+// Render the chess board
 for (let i = 0; i < 64; i++) {
   const square = document.createElement("div");
   square.classList.add("square");
@@ -42,18 +44,11 @@ for (let i = 0; i < 64; i++) {
   } else {
     square.classList.add("dark");
   }
+  square.dataset.index = i;
   board.appendChild(square);
 }
-for (let i = 0; i < pieces.length; i++) {
-  const piece = document.createElement("div");
-  piece.classList.add("piece");
-  piece.innerHTML = pieces[i].symbol;
-  piece.setAttribute("draggable", "true");
-  piece.dataset.color = pieces[i].color;
-  piece.dataset.name = pieces[i].name;
-  const square = document.querySelector(`.square[data-index="${i}"]`);
-  square.appendChild(piece);
-}
+
+// Implement drag and drop functionality
 let draggedPiece = null;
 
 document.addEventListener("dragstart", function (event) {
@@ -85,6 +80,8 @@ document.addEventListener("drop", function (event) {
   }
   draggedPiece = null;
 });
+
+// Implement game logic
 function isLegalMove(color, name, fromIndex, toIndex) {
   // Implement game logic here
   return true; // Default to allowing any move
